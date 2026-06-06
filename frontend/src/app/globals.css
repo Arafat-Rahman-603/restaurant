@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  /* Brand Colors */
+  --color-primary-50: #FFF3E8;
+  --color-primary-100: #FFE4C4;
+  --color-primary-200: #FFC285;
+  --color-primary-300: #FF9E45;
+  --color-primary-400: #FF8220;
+  --color-primary-500: #FF6B00;
+  --color-primary-600: #E05E00;
+  --color-primary-700: #B34B00;
+  --color-primary-800: #8A3900;
+  --color-primary-900: #6B2C00;
+
+  --color-accent: #E63946;
+  --color-accent-light: #FF6B76;
+  --color-accent-dark: #B02832;
+
+  --color-dark: #0A0A0A;
+  --color-dark-50: #1A1A1A;
+  --color-dark-100: #141414;
+  --color-dark-200: #1E1E1E;
+  --color-dark-300: #252525;
+  --color-dark-400: #2A2A2A;
+  --color-dark-500: #333333;
+  --color-dark-DEFAULT: #0A0A0A;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+
+  /* Animations */
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-slide-up: slide-up 0.5s ease-out;
+  --animate-spin-slow: spin 8s linear infinite;
+
+  /* Shadows */
+  --shadow-glow: 0 0 30px rgb(255 107 0 / 0.3);
+  --shadow-glow-lg: 0 0 60px rgb(255 107 0 / 0.4);
+  --shadow-card: 0 4px 24px rgb(0 0 0 / 0.4);
+  --shadow-card-hover: 0 8px 40px rgb(0 0 0 / 0.6);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgb(255 107 0 / 0.3); }
+  50% { box-shadow: 0 0 40px rgb(255 107 0 / 0.6); }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1A1A1A; }
+::-webkit-scrollbar-thumb { background: #FF6B00; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #E05E00; }
+
+::selection { background: rgb(255 107 0 / 0.3); color: #fff; }
+
+/* Glass morphism */
+.glass {
+  background: rgb(255 255 255 / 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgb(255 255 255 / 0.06);
+}
+
+.glass-dark {
+  background: rgb(0 0 0 / 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgb(255 255 255 / 0.05);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #FF6B00, #E63946);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow */
+.glow { box-shadow: 0 0 30px rgb(255 107 0 / 0.3); }
+.glow-lg { box-shadow: 0 0 60px rgb(255 107 0 / 0.4); }
+
+/* Orange button */
+.btn-primary {
+  background: linear-gradient(135deg, #FF6B00, #E63946);
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #E05E00, #B02832);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary > * { position: relative; z-index: 1; }
+.btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
+
+/* Line clamp */
+.line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
+.line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #1a1a1a 25%, #252525 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Status badge colors */
+.status-pending { background: rgb(234 179 8 / 0.15); color: #EAB308; border: 1px solid rgb(234 179 8 / 0.3); }
+.status-confirmed { background: rgb(59 130 246 / 0.15); color: #3B82F6; border: 1px solid rgb(59 130 246 / 0.3); }
+.status-preparing { background: rgb(168 85 247 / 0.15); color: #A855F7; border: 1px solid rgb(168 85 247 / 0.3); }
+.status-out-for-delivery { background: rgb(255 107 0 / 0.15); color: #FF6B00; border: 1px solid rgb(255 107 0 / 0.3); }
+.status-delivered { background: rgb(34 197 94 / 0.15); color: #22C55E; border: 1px solid rgb(34 197 94 / 0.3); }
+.status-cancelled { background: rgb(239 68 68 / 0.15); color: #EF4444; border: 1px solid rgb(239 68 68 / 0.3); }
+
+/* Noise overlay */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Scrollbar none utility */
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* Shadow utilities (Tailwind v4 custom) */
+.shadow-glow { box-shadow: 0 0 30px rgb(255 107 0 / 0.3); }
+.shadow-glow-lg { box-shadow: 0 0 60px rgb(255 107 0 / 0.4); }
+.shadow-card { box-shadow: 0 4px 24px rgb(0 0 0 / 0.4); }
+.shadow-card-hover { box-shadow: 0 8px 40px rgb(0 0 0 / 0.6); }
+
+/* Background gradient utilities */
+.bg-hero-gradient { background: linear-gradient(135deg, #FF6B00 0%, #E63946 100%); }
+.bg-dark-gradient { background: linear-gradient(135deg, #141414 0%, #1A1A1A 100%); }
+
+/* Animation utilities */
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.5s ease-out; }
+.animate-spin-slow { animation: spin 8s linear infinite; }
