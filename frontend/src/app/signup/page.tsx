@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Flame, Eye, EyeOff, Mail, Lock, User, Phone, MapPin } from 'lucide-react';
@@ -14,6 +14,14 @@ import toast from 'react-hot-toast';
 import Link from 'next/link';
 
 export default function CustomerSignupPage() {
+  return (
+    <Suspense fallback={null}>
+      <SignupContent />
+    </Suspense>
+  );
+}
+
+function SignupContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { token, setAuth } = useAuthStore();
